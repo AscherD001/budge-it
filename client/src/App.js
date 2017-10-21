@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from "react";
+import Example from "./pages/example";
+// import Books from "./pages/Books";
+// import Nav from "./components/Nav";
 
-class App extends Component {
-  render() {
-    return (
-   <h1>a thing</h1>
-    );
-  }
-}
+const App = () => 
+  <div>
+    <Example />
+  </div>;
 
 export default App;
