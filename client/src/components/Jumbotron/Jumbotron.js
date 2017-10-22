@@ -1,8 +1,15 @@
 import React from "react";
 
-const Jumbotron = ({ children }) =>
+const Jumbotron = ( props ) => {
+  // console.log(props.children);
+  return(
   <div style={{ height: 300, backgroundColor: "#555555", paddingTop: "none" }} className="jumbotron">
-    {children}
-  </div>;
+    {props.children}
+    {/* 
+    <h1 style={{ color: "white", textAlign: "center", marginTop: "-45px" }}>{props.value}</h1>
+    */}
+  </div>
+  );
+};
 
 export default Jumbotron;

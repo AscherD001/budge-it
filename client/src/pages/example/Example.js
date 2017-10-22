@@ -7,7 +7,7 @@ class Example extends Component {
     return (
       <div>
       <Nav />
-      <Jumbotron>
+      <Jumbotron value="This is commented out!">
         <h1 style={{ color: "white", textAlign: "center", lineHeight: "150px" }}>Budge It!</h1>
       </Jumbotron>
       </div>
@@ -16,3 +16,6 @@ class Example extends Component {
 }
 
 export default Example;
+
+// jumbotron is imported from client/src/components
+// the <h1> element is {children} inside the "../../components/Jumbotron/Jumbotron.js" file
