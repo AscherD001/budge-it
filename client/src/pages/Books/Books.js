@@ -11,8 +11,11 @@ class Books extends Component {
   state = {
     books: [],
     name: "",
-    amount: "",
-    synopsis: ""
+    account: "",// Not sure if these should be in quotes or something else for Int values
+    amount: "", // Not sure if these should be in quotes or something else for Int values
+    dueDate: "", // Shold this be in quotes or something else
+    webAddress: "",
+    category: ""
   };
 
   // When the component mounts, load all books and save them to this.state.books
@@ -24,7 +27,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, name: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, name: "", account: "", amount: "", dueDate: "", webAddress: "", category: "" })
       )
       .catch(err => console.log(err));
   };
@@ -51,8 +54,11 @@ class Books extends Component {
     if (this.state.name && this.state.amount) {
       API.saveBook({
         name: this.state.name,
+        account: this.state.account,
         amount: this.state.amount,
-        synopsis: this.state.synopsis
+        dueDate: this.state.dueDate,
+        webAddress: this.state.webAddress,
+        category: this.state.category
       })
         .then(res => this.loadBooks())
         .catch(err => console.log(err));
@@ -75,16 +81,34 @@ class Books extends Component {
                 placeholder="Name (required)"
               />
               <Input
+                value={this.state.account}
+                onChange={this.handleInputChange}
+                name="account"
+                placeholder="Account Number (required)"
+              />
+              <Input
                 value={this.state.amount}
                 onChange={this.handleInputChange}
                 name="amount"
                 placeholder="Amount (required)"
               />
-              <TextArea
-                value={this.state.synopsis}
+              <Input
+                value={this.state.dueDate}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="dueDate"
+                placeholder="Due Date (required)"
+              />
+              <Input
+                value={this.state.webAddress}
+                onChange={this.handleInputChange}
+                name="webAddress"
+                placeholder="Web Address"
+              />
+              <TextArea
+                value={this.state.category}
+                onChange={this.handleInputChange}
+                name="category"
+                placeholder="Category (Optional)"
               />
               <FormBtn
                 disabled={!(this.state.amount && this.state.name)}
