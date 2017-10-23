@@ -10,8 +10,8 @@ class Books extends Component {
   // Setting our component's initial state
   state = {
     books: [],
-    title: "",
-    author: "",
+    name: "",
+    amount: "",
     synopsis: ""
   };
 
@@ -24,7 +24,7 @@ class Books extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, name: "", author: "", synopsis: "" })
       )
       .catch(err => console.log(err));
   };
@@ -48,10 +48,10 @@ class Books extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (this.state.name && this.state.amount) {
       API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
+        name: this.state.name,
+        amount: this.state.amount,
         synopsis: this.state.synopsis
       })
         .then(res => this.loadBooks())
@@ -69,16 +69,16 @@ class Books extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.name}
                 onChange={this.handleInputChange}
                 name="title"
-                placeholder="Title (required)"
+                placeholder="Name (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.amount}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="amount"
+                placeholder="Amount (required)"
               />
               <TextArea
                 value={this.state.synopsis}
@@ -87,7 +87,7 @@ class Books extends Component {
                 placeholder="Synopsis (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.amount && this.state.name)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Book
@@ -105,7 +105,7 @@ class Books extends Component {
                     <ListItem key={book._id}>
                       <a href={"/books/" + book._id}>
                         <strong>
-                          {book.title} by {book.author}
+                          {book.name} by {book.amount}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteBook(book._id)} />
