@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const bookRoutes = require("./bill");
+const billRoutes = require("./bill");
 
 // Book routes
 router.use("/bill", billRoutes);

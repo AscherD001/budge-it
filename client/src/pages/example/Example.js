@@ -14,10 +14,6 @@ class Example extends Component {
   render() {
     return (
       <div>
-      <Nav />
-      <Jumbotron value="This is commented out!">
-        <h1 style={{ color: "white", textAlign: "center", lineHeight: "150px" }}>Budge It!</h1>
-      </Jumbotron>
       <FlatNav />
       <Login />
       <BudgetItem />
