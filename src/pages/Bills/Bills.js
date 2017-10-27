@@ -6,33 +6,33 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Bills extends Component {
+class Books extends Component {
   // Setting our component's initial state
   state = {
-    bill: "",
-    category: "",
-    amount: "",
-    explanation: ""
+    books: [],
+    title: "",
+    author: "",
+    synopsis: ""
   };
 
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
-    this.loadBills();
+    this.loadBooks();
   }
 
   // Loads all books  and sets them to this.state.books
-  loadBills = () => {
-    API.getBills()
+  loadBooks = () => {
+    API.getBooks()
       .then(res =>
-        this.setState({ bills: res.data, bill: "", category: "", amount: "", explanation: "" })
+        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
       )
       .catch(err => console.log(err));
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
-  deleteBill = id => {
-    API.deleteBill(id)
-      .then(res => this.loadBills())
+  deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.loadBooks())
       .catch(err => console.log(err));
   };
 
@@ -48,13 +48,13 @@ class Bills extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.bill && this.state.amount) {
+    if (this.state.title && this.state.author) {
       API.saveBook({
-        bill: this.state.bill,
-        amount: this.state.amount,
-        category: this.state.category
+        title: this.state.title,
+        author: this.state.author,
+        synopsis: this.state.synopsis
       })
-        .then(res => this.loadBills())
+        .then(res => this.loadBooks())
         .catch(err => console.log(err));
     }
   };
@@ -65,56 +65,50 @@ class Bills extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Bills Must I Pay?</h1>
+              <h1>What Books Should I Read?</h1>
             </Jumbotron>
             <form>
               <Input
-                value={this.state.bill}
+                value={this.state.title}
                 onChange={this.handleInputChange}
-                name="bill"
-                placeholder="Bill (required)"
+                name="title"
+                placeholder="Title (required)"
               />
               <Input
-                value={this.state.amout}
+                value={this.state.author}
                 onChange={this.handleInputChange}
-                name="amount"
-                placeholder="Amount (required)"
-              />
-              <Input
-                value={this.state.category}
-                onChange={this.handleInputChange}
-                name="category"
-                placeholder="Category (required)"
+                name="author"
+                placeholder="Author (required)"
               />
               <TextArea
-                value={this.state.explanation}
+                value={this.state.synopsis}
                 onChange={this.handleInputChange}
-                name="explanation"
-                placeholder="Explanation (Optional)"
+                name="synopsis"
+                placeholder="Synopsis (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.category && this.state.bill)}
+                disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Bill
+                Submit Book
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Bills</h1>
+              <h1>Books On My List</h1>
             </Jumbotron>
-            {this.state.bills.length ? (
+            {this.state.books.length ? (
               <List>
-                {this.state.bills.map(bill => {
+                {this.state.books.map(book => {
                   return (
-                    <ListItem key={bill._id}>
-                      <a href={"/bills/" + bill._id}>
+                    <ListItem key={book._id}>
+                      <a href={"/books/" + book._id}>
                         <strong>
-                          {bill.bill} by {bill.category}
+                          {book.title} by {book.author}
                         </strong>
                       </a>
-                      <DeleteBtn onClick={() => this.deleteBill(bill._id)} />
+                      <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                     </ListItem>
                   );
                 })}
@@ -129,4 +123,4 @@ class Bills extends Component {
   }
 }
 
-export default Bills;
+export default Books;
