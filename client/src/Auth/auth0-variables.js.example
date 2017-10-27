@@ -1,0 +1,5 @@
+export const AUTH_CONFIG = {
+  domain: 'budge-it.auth0.com',
+  clientId: 'GGUe6AUBKRn8bONQKsR7ouEUTqhgcCUO',
+  callbackUrl: 'http://localhost:3000/callback'
+}
