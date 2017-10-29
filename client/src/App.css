@@ -1,3 +1,11 @@
 .btn-margin {
-  margin: 7px 3px;
+  background-color: #222;
+  border-color: #222;
+  color: #337ab7;
+  margin-right: 5%;
+  margin-top: 10px;
+  position: relative;
+  font-size: medium;
+  float: right;  
+  z-index: 1;
 }

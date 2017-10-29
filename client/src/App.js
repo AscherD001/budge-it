@@ -26,22 +26,9 @@ class App extends Component {
 
     return (
       <div>
-        <Navbar fluid>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
-            </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
             {
               !isAuthenticated() && (
                   <Button
-                    bsStyle="primary"
                     className="btn-margin"
                     onClick={this.login.bind(this)}
                   >
@@ -52,7 +39,6 @@ class App extends Component {
             {
               isAuthenticated() && (
                   <Button
-                    bsStyle="primary"
                     className="btn-margin"
                     onClick={this.logout.bind(this)}
                   >
@@ -60,9 +46,7 @@ class App extends Component {
                   </Button>
                 )
             }
-          </Navbar.Header>
-        </Navbar>
-        <Router>
+            <Router>
           <div>
             <Navpills />
             <Route exact path="/" component={Homepage} />
