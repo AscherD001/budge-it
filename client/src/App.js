@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navpills from "./components/Navpills";
 import Homepage from "./pages/Homepage";
 import Budget from "./pages/Budget";
+import Bills from "./pages/Bills";
 
 class App extends Component {
   goTo(route) {
@@ -66,6 +67,7 @@ class App extends Component {
             <Navpills />
             <Route exact path="/" component={Homepage} />
             <Route exact path="/Budget" component={Budget} />
+            <Route exact path="/Bills" component={Bills} />
           </div>
         </Router>
       </div>
