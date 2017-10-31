@@ -1,5 +1,6 @@
 import history from '../history';
 import auth0 from 'auth0-js';
+var request = require("request");
 // import { AUTH_CONFIG } from './auth0-variables';
 
 export default class Auth {
@@ -28,6 +29,18 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         history.replace('/home');
+          
+        //  Gets User login data after from Auth0 mgmt API and console logs in JSON format //
+        var options = { method: 'GET',
+        url: 'https://budge-it.auth0.com/api/v2/users',
+        headers: { authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJVUTVRVUkzT0VGR01rUkRSVGxHTkRKRFF6ZzRNa0kyUmpaRlJqbEJRMFU1TkRNeU5FUTJOdyJ9.eyJpc3MiOiJodHRwczovL2J1ZGdlLWl0LmF1dGgwLmNvbS8iLCJzdWIiOiJvYTJxaTM4aGJQSW0yRmJaY3ZRajkwMlU5VkhYZWRDZ0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9idWRnZS1pdC5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTUwOTQxMjkwNywiZXhwIjoxNTA5NDk5MzA3LCJzY29wZSI6InJlYWQ6Y2xpZW50X2dyYW50cyBjcmVhdGU6Y2xpZW50X2dyYW50cyBkZWxldGU6Y2xpZW50X2dyYW50cyB1cGRhdGU6Y2xpZW50X2dyYW50cyByZWFkOnVzZXJzIHVwZGF0ZTp1c2VycyBkZWxldGU6dXNlcnMgY3JlYXRlOnVzZXJzIHJlYWQ6dXNlcnNfYXBwX21ldGFkYXRhIHVwZGF0ZTp1c2Vyc19hcHBfbWV0YWRhdGEgZGVsZXRlOnVzZXJzX2FwcF9tZXRhZGF0YSBjcmVhdGU6dXNlcnNfYXBwX21ldGFkYXRhIGNyZWF0ZTp1c2VyX3RpY2tldHMgcmVhZDpjbGllbnRzIHVwZGF0ZTpjbGllbnRzIGRlbGV0ZTpjbGllbnRzIGNyZWF0ZTpjbGllbnRzIHJlYWQ6Y2xpZW50X2tleXMgdXBkYXRlOmNsaWVudF9rZXlzIGRlbGV0ZTpjbGllbnRfa2V5cyBjcmVhdGU6Y2xpZW50X2tleXMgcmVhZDpjb25uZWN0aW9ucyB1cGRhdGU6Y29ubmVjdGlvbnMgZGVsZXRlOmNvbm5lY3Rpb25zIGNyZWF0ZTpjb25uZWN0aW9ucyByZWFkOnJlc291cmNlX3NlcnZlcnMgdXBkYXRlOnJlc291cmNlX3NlcnZlcnMgZGVsZXRlOnJlc291cmNlX3NlcnZlcnMgY3JlYXRlOnJlc291cmNlX3NlcnZlcnMgcmVhZDpkZXZpY2VfY3JlZGVudGlhbHMgdXBkYXRlOmRldmljZV9jcmVkZW50aWFscyBkZWxldGU6ZGV2aWNlX2NyZWRlbnRpYWxzIGNyZWF0ZTpkZXZpY2VfY3JlZGVudGlhbHMgcmVhZDpydWxlcyB1cGRhdGU6cnVsZXMgZGVsZXRlOnJ1bGVzIGNyZWF0ZTpydWxlcyByZWFkOnJ1bGVzX2NvbmZpZ3MgdXBkYXRlOnJ1bGVzX2NvbmZpZ3MgZGVsZXRlOnJ1bGVzX2NvbmZpZ3MgcmVhZDplbWFpbF9wcm92aWRlciB1cGRhdGU6ZW1haWxfcHJvdmlkZXIgZGVsZXRlOmVtYWlsX3Byb3ZpZGVyIGNyZWF0ZTplbWFpbF9wcm92aWRlciBibGFja2xpc3Q6dG9rZW5zIHJlYWQ6c3RhdHMgcmVhZDp0ZW5hbnRfc2V0dGluZ3MgdXBkYXRlOnRlbmFudF9zZXR0aW5ncyByZWFkOmxvZ3MgcmVhZDpzaGllbGRzIGNyZWF0ZTpzaGllbGRzIGRlbGV0ZTpzaGllbGRzIHVwZGF0ZTp0cmlnZ2VycyByZWFkOnRyaWdnZXJzIHJlYWQ6Z3JhbnRzIGRlbGV0ZTpncmFudHMgcmVhZDpndWFyZGlhbl9mYWN0b3JzIHVwZGF0ZTpndWFyZGlhbl9mYWN0b3JzIHJlYWQ6Z3VhcmRpYW5fZW5yb2xsbWVudHMgZGVsZXRlOmd1YXJkaWFuX2Vucm9sbG1lbnRzIGNyZWF0ZTpndWFyZGlhbl9lbnJvbGxtZW50X3RpY2tldHMgcmVhZDp1c2VyX2lkcF90b2tlbnMgY3JlYXRlOnBhc3N3b3Jkc19jaGVja2luZ19qb2IgZGVsZXRlOnBhc3N3b3Jkc19jaGVja2luZ19qb2IgcmVhZDpjdXN0b21fZG9tYWlucyBkZWxldGU6Y3VzdG9tX2RvbWFpbnMgY3JlYXRlOmN1c3RvbV9kb21haW5zIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.WlTCMwjbbiuMC5Hbzvo4fsZWdxlJMy5hyAQTD4GQsipIvQfaLbNzJPwxeTrX8q-6y3qUCTrFhgUqbUXPB_yVdTDHoIiX8Xtg7KciYXJL3cANPODZ-3T9SMy-OERrqeCx_C0oxQe6RoYBpfZZxZ3wVZoqVdJJtt140KqEkzyxgHMqZREGsBCcX8cKH2POONHAvPEAmnc-6Rn4WW7i1cRWy9uztZaW1kMgDC2DcNu_ZnbsVyrHXzwIHc8gyNua21YZ22iJWkhWzz2cUsjxBpXrUAZohmKNHSJSoejrlflML1_bPz5zw9ev7ESL856rvrYujHzN2AFkf-9w94UsjwtuQg' } };
+      
+        request(options, function (error, response, body) {
+          if (error) throw new Error(error);
+      
+        console.log(JSON.parse(body));
+      });
+
       } else if (err) {
         history.replace('/home');
         console.log(err);
