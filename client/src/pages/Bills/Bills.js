@@ -5,6 +5,7 @@ import API from "../../utils/API";
 // import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
+import Navpills from "../../components/Navpills";
 
 class Bills extends Component {
   // Setting our component's initial state
@@ -67,6 +68,8 @@ class Bills extends Component {
 
   render() {
     return (
+      <div>
+        <Navpills />
       <div className= "container">
         <div className="row">
           <div className = "col-md-6">
@@ -138,6 +141,7 @@ class Bills extends Component {
             )}
           </div>
         </div>
+      </div>
       </div>
     );
   }

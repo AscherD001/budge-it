@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Navpills from "../components/Navpills";
 
 class Home extends Component {
   login() {
@@ -7,6 +8,8 @@ class Home extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
+      <div>
+        <Navpills />
       <div className="container">
         {
           isAuthenticated() && (
@@ -29,6 +32,7 @@ class Home extends Component {
               </h4>
             )
         }
+      </div>
       </div>
     );
   }
