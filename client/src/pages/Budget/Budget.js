@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddBtn from "../../components/AddBtn"; 
 import BudgetItem from "../../components/BudgetItem";
+import BudgetInput from "../../components/BudgetInput";
 import Navpills from "../../components/Navpills";
 
 class Budget extends Component {
@@ -10,6 +11,7 @@ class Budget extends Component {
         <Navpills />
         <AddBtn />
         <BudgetItem />
+        <BudgetInput />
       </div>
     );
   }
