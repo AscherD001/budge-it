@@ -99,7 +99,7 @@ class Bills extends Component {
                 value={this.state.dueDate}
                 onChange={this.handleInputChange}
                 name="dueDate"
-                placeholder="Due Date (required)"
+                placeholder="Due Date MM/DD/YYYY (required)"
               />
               <textarea
                 value={this.state.category}
@@ -108,8 +108,8 @@ class Bills extends Component {
                 placeholder="Category (Optional)"
               />
               <button type="submit"
-                disabled={!(this.state.amount && this.state.name)}
-                style= {!(this.state.amount && this.state.name) ? {cursor: 'not-allowed'} : {cursor: 'default'} }
+                disabled={!(this.state.amount && this.state.name && this.state.dueDate)}
+                style= {!(this.state.amount && this.state.name && this.state.dueDate) ? {cursor: 'not-allowed'} : {cursor: 'default'} }
                 onClick={this.handleFormSubmit}
               >
                 Submit Bill
@@ -128,7 +128,7 @@ class Bills extends Component {
                     <li key={bill._id} style={{"margin-bottom": "10px"}}>
                       <a href={"/bills/" + bill._id}>
                         <strong>
-                          Name: {bill.name} Amount: ${bill.amount}
+                          Name: {bill.name} Amount: ${bill.amount} Due Date: {bill.dueDate}
                         </strong>
                       </a>
                       <button style={{"margin-left": "14px"}} className="Delete" onClick={() => this.deleteBill(bill._id)}>Delete</button>
