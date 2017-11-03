@@ -16,5 +16,21 @@ export default {
   // Saves a book to the database
   saveBill: function(billData) {
     return axios.post("/api/bill", billData);
+  },
+    // Gets all books
+  getBudget:function() {
+    return axios.get("/api/budget/");
+  },
+  // Gets the book with the given id
+  getBudget: function(id) {
+    return axios.get("/api/budget/" + id);
+  },
+  // Deletes the book with the given id
+  deleteBudget: function(id) {
+    return axios.delete("/api/budget/" + id);
+  },
+  // Saves a book to the database
+  saveBudget: function(budgetData) {
+    return axios.post("/api/budget", budgetData);
   }
 };
