@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navpills = () =>
-  <ul className="nav nav-pills navbar navbar-inverse">
+  <ul className="nav nav-pills navbar navbar-inverse" style={{ marginBottom: "0px" }}>
     <li className={window.location.pathname === "/" ? "active" : ""} style={{ fontSize: "150%" }}>
       <Link to="/">Budge-It!</Link>
     </li>
