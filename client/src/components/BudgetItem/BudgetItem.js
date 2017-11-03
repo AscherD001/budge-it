@@ -16,7 +16,7 @@ const BudgetItem = () => (
           </div>    
         </div> 
         <div className="row">
-          <div className="progress" style={{ maxWidth: 450, height: "45px" }}>
+          <div className="progress" style={{ maxWidth: 450, height: "45px", lineHeight: "40px" }}>
             <span className="text pull-left" style={{ marginLeft: "20px"}}>$Spent / $Total</span>
             <span className="text pull-right" style={{ marginRight: "20px" }}>(%Percentage)</span>
           </div>
