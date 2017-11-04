@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
-
 import AddBtn from "../../components/AddBtn"; 
 import BudgetItem from "../../components/BudgetItem";
 import BudgetInput from "../../components/BudgetInput";
@@ -23,9 +21,10 @@ class Budget extends Component {
 
   // Loads all books  and sets them to this.state.books
   loadBudget = () => {
-    API.getBudget()
+
+    API.getBudgets()      
       .then(res => {
-        console.log(res)
+        console.log(res);
         this.setState({ budget: res.data, name: "", amount: "", date: "", balance: "" })
       }
       )
@@ -67,9 +66,13 @@ class Budget extends Component {
     return (
       <div>
         <Navpills />
-        <AddBtn />
-        <BudgetItem />
         <BudgetInput />
+        <AddBtn />
+        {this.state.budget.map(budget => {
+          return(
+            <BudgetItem key = {budget._id} name = {budget.name} />
+          )
+        })}
       </div>
     );
   }

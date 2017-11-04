@@ -18,7 +18,7 @@ export default {
     return axios.post("/api/bill", billData);
   },
     // Gets all books
-  getBudget:function() {
+  getBudgets:function() {
     return axios.get("/api/budget/");
   },
   // Gets the book with the given id

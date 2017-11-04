@@ -1,12 +1,33 @@
 import React from "react";
+// amount
+// :
+// 450
+// category
+// :
+// "Leisure"
+// date
+// :
+// "2017-11-04T02:17:02.554Z"
+// dueDate
+// :
+// "12/01"
+// explanation
+// :
+// "50 less for Thankgsgiving Feast at home."
+// name
+// :
+// "Restaurant Expenses"
+// _id
+// :
+// "59fd1fafd6f2ca269c164b5c"
 
-const BudgetItem = () => (
+const BudgetItem = props => (
   <div className="container" style={{ marginTop: "40px", marginBottom: "20px", marginLeft: "80px" }}>
       <div className="col-lg-6 text-center" style={{ borderBottom: "#34495e 5px solid" }}> 
         <div className="row">
           <div className="col-lg-3">
             <div className="form-group">
-              <label className="control-label"><b>Bill Name:</b></label>
+              <label className="control-label"><b>Bill Name: {props.name}</b></label>
               <input className="form-control" type="text" placeholder="$00.00" style={{ marginRight: "20px", marginLeft: "20px", marginBottom: "20px" }}/>
             </div>  
           </div>  

@@ -6,7 +6,8 @@ const billSchema = new Schema({
   amount: { type: Number, required: true},
   dueDate: { type: Date, required: true},
   explanation: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  userId: { type: String, required: true}
 });
 
 const Bill = mongoose.model("Bill", billSchema);
