@@ -64,6 +64,7 @@ class Bills extends Component {
         .then(res => this.loadBills())
         .catch(err => console.log(err));
     }
+    
   };
 
   render() {

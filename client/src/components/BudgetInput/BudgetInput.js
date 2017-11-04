@@ -1,4 +1,5 @@
 import React from "react";
+// import Budget from "../../pages/Budget/Budget.js/"
 
 const BudgetInput = () => (
   <div className="container" style={{ marginTop: "40px", marginBottom: "20px", marginLeft: "80px" }}>
@@ -6,13 +7,13 @@ const BudgetInput = () => (
         <div className="row">
           <div className="col-lg-3">
             <div className="form-group">
-              <input className="form-control" type="text" placeholder="Bill Name"style={{ marginRight: "20px", marginLeft: "20px", marginBottom: "20px" }}/>
-              <input className="form-control" type="text" placeholder="$00.00 per month" />
+              <input className="form-control" id="budgetName" type="text" placeholder="Bill Name"style={{ marginRight: "20px", marginLeft: "20px", marginBottom: "20px" }}/>
+              <input className="form-control" id="budgetAmount" type="text" placeholder="$00.00 per month" />
             </div>  
           </div>  
           <div className="col-lg-3 pull-right" style={{ marginTop: "40px", marginRight: "120px" }}>
             <button className="btn btn-danger pull-right" type="button" style={{ marginLeft: "20px" }}><span className="glyphicon glyphicon-remove"></span></button>
-            <button className="btn btn-success pull-right" type="button"><span className="glyphicon glyphicon-ok"></span></button>
+            <button className="btn btn-success pull-right" id="checkSuccess" type="button"><span className="glyphicon glyphicon-ok"></span></button>
           </div>    
         </div> 
         <div className="row">

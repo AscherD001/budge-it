@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import AddBtn from "../../components/AddBtn"; 
+import FormBtn from "../../components/Form/FormBtn";
+import Input from "../../components/Form/Input";
 import BudgetItem from "../../components/BudgetItem";
 import BudgetInput from "../../components/BudgetInput";
 import Navpills from "../../components/Navpills";
@@ -50,6 +52,7 @@ class Budget extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault();
+    console.log(this.state.name);
     if (this.state.name && this.state.amount) {
       API.saveBudget({
         name: this.state.name,
@@ -66,8 +69,28 @@ class Budget extends Component {
     return (
       <div>
         <Navpills />
+        <AddBtn />  
         <BudgetInput />
-        <AddBtn />
+        <form>   
+        <Input
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="Title (required)"
+              />        
+       
+        
+        <FormBtn
+          onClick={this.handleFormSubmit}
+          // onClick={()=>console.log("test")}
+        >
+          Submit Book
+        </FormBtn>
+        </form>
+
+          
+      
+
         {this.state.budget.map(budget => {
           return(
             <BudgetItem key = {budget._id} name = {budget.name} />
