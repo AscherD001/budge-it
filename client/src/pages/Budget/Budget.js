@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import AddBtn from "../../components/AddBtn"; 
-import FormBtn from "../../components/Form/FormBtn";
+import CheckBtn from "../../components/Form/CheckBtn";
+import DeleteBtn from "../../components/Form/DeleteBtn";
 import Input from "../../components/Form/Input";
 import BudgetItem from "../../components/BudgetItem";
-import BudgetInput from "../../components/BudgetInput";
+// import BudgetInput from "../../components/BudgetInput";
 import Navpills from "../../components/Navpills";
 import API from "../../utils/API";
 
@@ -53,6 +54,7 @@ class Budget extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.name);
+    console.log(this.state.amount);
     if (this.state.name && this.state.amount) {
       API.saveBudget({
         name: this.state.name,
@@ -70,27 +72,44 @@ class Budget extends Component {
       <div>
         <Navpills />
         <AddBtn />  
-        <BudgetInput />
-        <form>   
-        <Input
-                value={this.state.name}
-                onChange={this.handleInputChange}
-                name="name"
-                placeholder="Title (required)"
-              />        
-       
-        
-        <FormBtn
-          onClick={this.handleFormSubmit}
-          // onClick={()=>console.log("test")}
-        >
-          Submit Book
-        </FormBtn>
-        </form>
-
-          
-      
-
+        <div className="container" style={{ marginTop: "40px", marginBottom: "20px", marginLeft: "80px" }}> 
+          <div className="col-lg-6 text-center" style={{ borderBottom: "#34495e 5px solid" }}> 
+            <div className="row">
+              <form>   
+                <Input
+                  value={this.state.name}
+                  onChange={this.handleInputChange}
+                  name="name"
+                  placeholder="Expense Name (required)"
+                />
+                <Input
+                  value={this.state.amount}
+                  onChange={this.handleInputChange}
+                  name="amount"
+                  placeholder="$00.00 Monthly (required)"
+                />  
+                <div className="col-lg-3 pull-right" style={{ marginTop: "40px", marginRight: "120px" }}>  
+                  <DeleteBtn onClick={() => this.deleteBudget()} />  {/*Not functioning yet*/}          
+                  <CheckBtn onClick={this.handleFormSubmit} />  {/*Console logs data but not getting posted to the database*/}                  
+                </div>
+              </form>          
+            </div>
+            <div className="row">
+              <div className="progress" style={{ maxWidth: 450, height: "45px" }}>
+                <span className="text pull-left" style={{ marginLeft: "20px"}}>$Spent / $Total</span>
+                <span className="text pull-right" style={{ marginRight: "20px" }}>(%Percentage)</span>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-3">
+                <p style={{ marginLeft: "20px" }}><b>Monthly:</b></p>
+              </div>  
+              <div className="col-lg-3 pull-right">
+                <p className="text pull-right" style={{ marginRight: "200px" }}><b>Remaining:</b></p>
+              </div>
+            </div> 
+          </div>
+        </div>
         {this.state.budget.map(budget => {
           return(
             <BudgetItem key = {budget._id} name = {budget.name} />
