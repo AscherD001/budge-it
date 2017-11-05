@@ -5,7 +5,7 @@ const budgetSchema = new Schema({
   name: { type: String, required: true },
   amount: { type: Number, required: true},
   date: { type: Date, default: Date.now },
-  balance: { type: String, required: true },
+  // balance: { type: String, required: true },
   userId: { type: String, required: true}
 });
 

@@ -3,7 +3,7 @@ import AddBtn from "../../components/AddBtn";
 import CheckBtn from "../../components/Form/CheckBtn";
 import DeleteBtn from "../../components/Form/DeleteBtn";
 import Input from "../../components/Form/Input";
-import BudgetItem from "../../components/BudgetItem";
+// import BudgetItem from "../../components/BudgetItem";
 // import BudgetInput from "../../components/BudgetInput";
 import Navpills from "../../components/Navpills";
 import API from "../../utils/API";
@@ -12,9 +12,9 @@ class Budget extends Component {
   state = {
     budget: [],
     name: "",
-    amount: "",
-    date: "",
-    balance: ""
+    amount: ""
+    // date: "",
+    // balance: ""
   };
 
   // When the component mounts, load all books and save them to this.state.books
@@ -28,7 +28,7 @@ class Budget extends Component {
     API.getBudgets()      
       .then(res => {
         console.log(res);
-        this.setState({ budget: res.data, name: "", amount: "", date: "", balance: "" })
+        this.setState({ budget: res.data, name: "", amount: "" })
       }
       )
       .catch(err => console.error("the error is: ",err));
@@ -59,8 +59,9 @@ class Budget extends Component {
       API.saveBudget({
         name: this.state.name,
         amount: this.state.amount,
-        date: this.state.date,
-        balance: this.state.balance
+        userId: localStorage.user_id
+        // date: this.state.date,
+        // balance: this.state.balance
       })
         .then(res => this.loadBudget())
         .catch(err => console.log(err));
@@ -110,11 +111,34 @@ class Budget extends Component {
             </div> 
           </div>
         </div>
-        {this.state.budget.map(budget => {
+
+
+        {/* {this.state.budget.map(budget => {
           return(
             <BudgetItem key = {budget._id} name = {budget.name} />
           )
-        })}
+        })} */}
+
+        {this.state.budget.length ? (
+              <ul>
+                {this.state.budget.map(budget => {
+                  return (
+                    <li key={budget._id} style={{"margin-bottom": "10px"}}>
+                      <a href={"/budget/" + budget._id}>
+                        <strong>
+                          Name: {budget.name} Amount: ${budget.amount} {/*Due Date: {budget.dueDate}*/}
+                        </strong>
+                      </a>
+                      <button style={{marginLeft: "14px"}} className="Delete" onClick={() => this.deleteBudget(budget._id)}>Delete</button>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <h3>Get Buck with me!</h3>
+            )}
+
+
       </div>
     );
   }

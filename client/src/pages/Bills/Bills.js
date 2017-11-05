@@ -59,7 +59,9 @@ class Bills extends Component {
         explanation: this.state.explanation,
         amount: this.state.amount,
         dueDate: this.state.dueDate,
-        category: this.state.category
+        category: this.state.category,
+        userId: localStorage.user_id
+
       })
         .then(res => this.loadBills())
         .catch(err => console.log(err));

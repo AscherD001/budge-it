@@ -17,14 +17,16 @@ const billSeed = [
     amount: "600.00",
     category: "Essentials",
     dueDate: "12/01",
-    explanation: "50 extra for Thankgsgiving Feast."
+    explanation: "50 extra for Thankgsgiving Feast.",
+    userId: "1351616"
   },
   {
     name: "Gas Bill",
     amount: "600.00",
     dueDate: "11/13",
     category: "Expense",
-    explanation: "N/A"
+    explanation: "N/A",
+    userId: "13511561616"
   },
   
 ];
