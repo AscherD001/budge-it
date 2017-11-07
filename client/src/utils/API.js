@@ -31,7 +31,10 @@ export default {
   },
   // Saves a book to the database
   saveBudget: function(budgetData) {
-    console.log("Test");
+    // console.log("Test");
     return axios.post("/api/budget", budgetData);
+  },
+  saveBalance: function(budgetData) {
+    return axios.post("/api/balance", budgetData);
   }
 };

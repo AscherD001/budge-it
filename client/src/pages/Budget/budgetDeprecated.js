@@ -3,7 +3,7 @@ import AddBtn from "../../components/AddBtn";
 import CheckBtn from "../../components/Form/CheckBtn";
 import DeleteBtn from "../../components/Form/DeleteBtn";
 import Input from "../../components/Form/Input";
-import BudgetItem from "../../components/BudgetItem";
+// import BudgetItem from "../../components/BudgetItem";
 // import BudgetInput from "../../components/BudgetInput";
 import Navpills from "../../components/Navpills";
 import API from "../../utils/API";
@@ -59,9 +59,7 @@ class Budget extends Component {
       API.saveBudget({
         name: this.state.name,
         amount: this.state.amount,
-        userId: localStorage.user_id,
-        test: 0,
-        temp: 0
+        userId: localStorage.user_id
         // date: this.state.date,
         // balance: this.state.balance
       })
@@ -71,8 +69,12 @@ class Budget extends Component {
   };
 
   handleInputSubmit = event => {
-    this.setState({temp: this.state.temp + this.state.test});
-    
+    if(this.state.temp == null || this.state.temp == undefined) {
+      this.state.temp = 0;
+    }
+    this.setState({
+      temp: this.state.temp - this.state.test
+    });
     console.log(this.state.temp);
     event.preventDefault();
 
@@ -83,7 +85,7 @@ class Budget extends Component {
         amount: Budget.amount,
         test: this.state.test,
         userId: localStorage.user_id,
-        temp: this.state.test + this.state.temp
+        temp: this.state.temp
         // date: this.state.date,
         // balance: this.state.balance
       })
@@ -140,20 +142,46 @@ class Budget extends Component {
         {this.state.budget.length ? (
           <div>
             {this.state.budget.map(budget => {
-                
               return (
                 <div key={budget._id} style={{"marginBottom": "10px"}}>  
-                <BudgetItem 
-                value={this.state.test}
-                name={budget.name}
-                budget = {budget}
-                deleteBudget = {this.deleteBudget}
-                inputSubmit = {this.handleInputSubmit}
-                remaining = {budget.amount - this.state.temp}
-                />
-              
-                {/* <DeleteBtn onClick={() => this.deleteBudget(budget._id)} /> 
-                <CheckBtn onClick={this.handleInputSubmit} /> */}
+                  <div className="container" style={{ marginTop: "40px", marginBottom: "20px", marginLeft: "80px" }}>
+                    <div className="col-lg-6 text-center" style={{ borderBottom: "#34495e 5px solid" }}> 
+                      <div className="row">
+                        <div className="col-lg-3">
+                          <div className="form-group">
+                            <label className="control-label"><b>Bill Name: {budget.name} </b></label>
+                            {/* <input className="form-control" value={this.state.test} onChange={this.handleInputChange} name="test"  type="text" placeholder="$00.00" style={{ marginRight: "20px", marginLeft: "20px", marginBottom: "20px" }}/> */}
+                            <form>
+                              <input
+                                value={this.state.test}
+                                onChange={this.handleInputChange}
+                                name="test"
+                                placeholder="$00.00 (required)"
+                              />
+                            </form>
+                          </div>  
+                        </div>  
+                          <div className="col-lg-3 pull-right" style={{ marginTop: "40px", marginRight: "120px" }}>
+                            <DeleteBtn onClick={() => this.deleteBudget(budget._id)} /> 
+                            <CheckBtn onClick={this.handleInputSubmit} />   {/*This needs updating*/}
+                          </div>    
+                        </div> 
+                        <div className="row">
+                          <div className="progress" style={{ maxWidth: 450, height: "45px", lineHeight: "40px" }}>
+                            <span className="text pull-left" style={{ marginLeft: "20px"}}>$Spent / $Total</span>
+                            <span className="text pull-right" style={{ marginRight: "20px" }}>(%Percentage)</span>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-lg-3">
+                            <p style={{ marginLeft: "20px" }}><b>Monthly: ${budget.amount}</b></p>
+                          </div>  
+                          <div className="col-lg-3 pull-right">
+                            <p className="text pull-right" style={{ marginRight: "200px" }}><b>Remaining: {budget.amount + budget.temp} </b></p>
+                          </div>
+                        </div>           
+                      </div>    
+                    </div>
                 </div>
               );
             })}

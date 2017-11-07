@@ -27,13 +27,13 @@ const BudgetItem = props => (
         <div className="row">
           <div className="col-lg-3">
             <div className="form-group">
-              <label className="control-label"><b>Bill Name: {props.name}</b></label>
+              <label className="control-label"><b>Bill Name: {}</b></label>
               <input className="form-control" type="text" placeholder="$00.00" style={{ marginRight: "20px", marginLeft: "20px", marginBottom: "20px" }}/>
             </div>  
           </div>  
           <div className="col-lg-3 pull-right" style={{ marginTop: "40px", marginRight: "120px" }}>
-            <button className="btn btn-danger pull-right" type="button" style={{ marginLeft: "20px" }}><span className="glyphicon glyphicon-remove"></span></button>
-            <button className="btn btn-success pull-right" type="button"><span className="glyphicon glyphicon-ok"></span></button>
+            <button onClick={() => props.deleteBudget(props.budget._id)} className="btn btn-danger pull-right" type="button" style={{ marginLeft: "20px" }}><span className="glyphicon glyphicon-remove"></span></button>
+            <button onClick={props.inputSubmit} className="btn btn-success pull-right" type="button"><span className="glyphicon glyphicon-ok"></span></button>
           </div>    
         </div> 
         <div className="row">
@@ -44,10 +44,10 @@ const BudgetItem = props => (
         </div>
         <div className="row">
           <div className="col-lg-3">
-            <p style={{ marginLeft: "20px" }}><b>Monthly:</b></p>
+            <p style={{ marginLeft: "20px" }}><b>Monthly: {props.budget.amount}</b></p>
           </div>  
           <div className="col-lg-3 pull-right">
-            <p className="text pull-right" style={{ marginRight: "200px" }}><b>Remaining:</b></p>
+            <p className="text pull-right" style={{ marginRight: "200px" }}><b>Remaining: {console.log(props) + console.log(props.budget)}</b></p>
           </div>
         </div>           
       </div>    
