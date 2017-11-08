@@ -28,7 +28,7 @@ const BudgetItem = props => (
           <div className="col-lg-3">
             <div className="form-group">
               <label className="control-label"><b>Bill Name: {}</b></label>
-              <input className="form-control" type="text" placeholder="$00.00" style={{ marginRight: "20px", marginLeft: "20px", marginBottom: "20px" }}/>
+              <input onChange={props.onChange}  ref={props.inputRef}  className="form-control" type="text" placeholder="$00.00" style={{ marginRight: "20px", marginLeft: "20px", marginBottom: "20px" }}/>
             </div>  
           </div>  
           <div className="col-lg-3 pull-right" style={{ marginTop: "40px", marginRight: "120px" }}>

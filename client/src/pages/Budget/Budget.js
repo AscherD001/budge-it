@@ -51,6 +51,10 @@ class Budget extends Component {
     });
   };
 
+  onChange () {
+    console.log("Test");
+  }
+
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   handleFormSubmit = event => {
@@ -147,6 +151,8 @@ class Budget extends Component {
                 value={this.state.test}
                 name={budget.name}
                 budget = {budget}
+                inputRef={(input) => this.textInput = input} 
+                onChange={this.onChange}
                 deleteBudget = {this.deleteBudget}
                 inputSubmit = {this.handleInputSubmit}
                 remaining = {budget.amount - this.state.temp}
