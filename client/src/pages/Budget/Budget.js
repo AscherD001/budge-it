@@ -8,7 +8,14 @@ import BudgetItem from "../../components/BudgetItem";
 import Navpills from "../../components/Navpills";
 import API from "../../utils/API";
 
+
+
 class Budget extends Component {
+
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
   state = {
     budget: [],
     name: "",
@@ -52,7 +59,7 @@ class Budget extends Component {
   };
 
   onChange () {
-    console.log("Test");
+    console.log(this.textInput.value);
   }
 
   // When the form is submitted, use the API.saveBook method to save the book data
