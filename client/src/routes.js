@@ -7,6 +7,8 @@ import Auth from './Auth/Auth';
 import history from './history';
 import Bills from './pages/Bills/Bills.js';
 import Budget from "./pages/Budget/Budget.js"
+import Credit from "./pages/Credits/Credit.js";
+
 
 const auth = new Auth();
 
@@ -30,6 +32,7 @@ export const makeMainRoutes = () => {
           }}/>
           <Route exact path="/bills" render={(props) => <Bills auth={auth} {...props} />} />
           <Route exact path="/budget" render={(props) => <Budget auth={auth} {...props} />} />
+          <Route exact path="/credit" render={(props) => <Credit auth={auth} {...props} />} />
         </Switch>
         </div>
       </Router>

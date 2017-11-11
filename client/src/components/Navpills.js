@@ -12,6 +12,9 @@ const Navpills = () =>
     <li className={window.location.pathname === "/Bills" ? "active" : ""} style={{ marginTop: "5px" }}>
       <Link to="/Bills">Bills</Link>
     </li>
+    <li className={window.location.pathname === "/Credit" ? "active" : ""} style={{ marginTop: "5px"}}>
+      <Link to="/Credit">Credits</Link>
+    </li>
   </ul>;
 
 export default Navpills;
