@@ -22,19 +22,19 @@ class Credit extends Component {
                 <div className="mcgeough">
                     <img src="https://avatars1.githubusercontent.com/u/26332545?s=400&v=4" alt="Daniel McGeough" height="200" width="200" id="mcgeough"/>
                     <a href="https://github.com/Dmcgeough"> Daniel McGeough Jr. </a>
-                    <span className="mcgeough"> Daniel is from England and likes to work with VanillaJS, SQLite, Bootstrap Framework. His passions include video games and writing code.</span>
+                    <span className="mcgeough"> Daniel has lived in Europe for 4 years and likes to work with VanillaJS, SQLite, Bootstrap Framework. His passions include video games and writing code.</span>
                 </div>
 
                 <div className="nguyen">
                     <img src="https://avatars3.githubusercontent.com/u/26380040?s=400&v=4" alt="Long Nguyen" height="200" width="200" id="nguyen"/>
                     <a href="https://github.com/Gamec0ck4l"> Long Nguyen </a>
-                    <span className="nguyen"> Long works well with HTML, CSS, Javascript, and all things backend. His favorite hobbies include trading and being with his family. </span>
+                    <span className="nguyen"> Long currently works at LPL Financial and likes to code in HTML, CSS, Javascript. His favorite hobbies include trading and being with his family. </span>
                 </div>
 
                 <div className="hopkins">
                     <img src={require(`./hopkins.png`)} alt="Stephen Hopkins" height="200" width="200" id="hopkins"/>
                     <a href="https://github.com/RaidoFive"> Stephen Hopkins </a>
-                    <span className="hopkins"> Stephen's favorite programming languages include Javascript and Jquery. He loves to read, especially works from Jim Busher. </span>
+                    <span className="hopkins"> Stephen's favorite programming languages include Javascript and Jquery. He loves to read, especially works from Jim Butcher. </span>
                 </div>
 
                 <div className="bui">
