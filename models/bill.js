@@ -7,7 +7,8 @@ const billSchema = new Schema({
   dueDate: { type: Date, required: true},
   explanation: String,
   date: { type: Date, default: Date.now },
-  userId: { type: String, required: true}
+  userId: { type: String, required: true},
+  category: { type: String }
 });
 
 const Bill = mongoose.model("Bill", billSchema);
